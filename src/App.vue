@@ -1,17 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NewStudentForm v-on:student-added="newStudentAdded"></NewStudentForm>
+    <StudentTable 
+    v-bind:students="students" 
+    v-on:student-present="studentArrivedOrLeft"
+    v-on:delete-student="studentDeleted">
+    </StudentTable>
+    <StudentMessage v-bind:message="message" v-bind:name="name"></StudentMessage>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NewStudentForm from './components/NewStudentForm.vue'
+import StudentTable from './components/StudentTable.vue'
+import StudentMessage from './components/StudentMessage.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      students: [],
+      message: '',
+      name: ''
+    }
+  },
   components: {
-    HelloWorld
+    NewStudentForm,
+    StudentTable,
+    StudentMessage
+  },
+  methods: {
+    newStudentAdded(student) {
+      this.students.push(student)
+      this.students.sort(function(s1, s2) {
+        return s1.name.toLowerCase() > s2.name.toUpperCase() ? -1 : 1
+      })
+    },
+    studentArrivedOrLeft(studnt) {
+      this.message = student.present ? 'Welcome,' : 'Goodbey,'
+      this.name = student.name
+    },
+    studentDeleted(student) {
+      this.students = this.students.flter( function(s) {return s != student})
+    }
   }
 }
 </script>
@@ -21,8 +52,14 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
+  padding: 20px;
 }
+.form-group {
+  background-color: turquoise;
+}
+
+
 </style>
