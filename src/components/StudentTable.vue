@@ -5,7 +5,7 @@
 
             <div class="edit-table-toggle form-check">
                 <input id="edit-table" type="checkbox" class="form-check-input" v-model="editTable">
-                <label for="edit-table" class="form-check-label">Edittable?</label>
+                <label for="edit-table" class="form-check-label">Edit table?</label>
             </div>
             <div id="student-table">
                 <table class="table">

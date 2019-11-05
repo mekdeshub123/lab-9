@@ -36,12 +36,12 @@ export default {
         return s1.name.toLowerCase() > s2.name.toUpperCase() ? -1 : 1
       })
     },
-    studentArrivedOrLeft(studnt) {
+    studentArrivedOrLeft(student) {
       this.message = student.present ? 'Welcome,' : 'Goodbey,'
       this.name = student.name
     },
     studentDeleted(student) {
-      this.students = this.students.flter( function(s) {return s != student})
+      this.students = this.students.filter( function(s) {return s != student})
     }
   }
 }

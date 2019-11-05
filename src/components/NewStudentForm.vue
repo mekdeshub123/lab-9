@@ -32,7 +32,7 @@
     //create and export component here
     export default {
         name: 'NewStudentForm',
-        date() {
+        data() {
             return {
                 newStudentName: '',
                 newStarID: '',
